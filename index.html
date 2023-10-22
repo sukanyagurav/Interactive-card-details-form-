@@ -11,7 +11,7 @@
  
 </head>
 <body>
-  <section class="card-Image">
+  <div class="card-Image">
    <div class="card">
     <div class="frontCard">
       <div class="frontCard-circle">
@@ -28,7 +28,7 @@
       <span class="lblCvc">000</span>
     </div>
   </div>
-  </section>
+  </div>
   <main>
     <div class="card-details">
     <div class="card-input">
@@ -38,18 +38,18 @@
     </div>
     <div class="card-input">
       <label for="cardNumber">Card Number</label>
-      <input type="tel" min="0" maxlength="19" required id="cardNumber" placeholder="e.g. 1234 5678 9123 0000">
+      <input type="tel"  maxlength="19" required id="cardNumber" placeholder="e.g. 1234 5678 9123 0000">
       <span class="errorMsg"></span>
     </div>
     <div class="card-date">
       
       <div class="card-expirary">
-        <label for="expirary">
+        <label>
           Exp. Date (MM/YY)
         </label>
         <div class="card-input date" id="date">
-          <input  type="tel" min="1" maxlength="2" required class="expiraryMonth" placeholder="MM" id="expiraryMonth" class="day">
-          <input type="tel" min='10' placeholder="YY" required class="expiraryYear" maxlength="2" id="expiraryYear">
+          <input  type="tel"  maxlength="2" required class="expiraryMonth" placeholder="MM" id="expiraryMonth" class="day">
+          <input type="tel"  placeholder="YY" required class="expiraryYear" maxlength="2" id="expiraryYear">
           <span class="errorMsg" ></span>
         </div>
         
@@ -58,7 +58,7 @@
         <label for="cvc">
           cvc
         </label>
-        <input type="tel" min="100"  maxlength="3" required placeholder="e.g. 123" id="cvc">
+        <input type="tel"  maxlength="3" required placeholder="e.g. 123" id="cvc">
         <span class="errorMsg" ></span>
       </div>
      
