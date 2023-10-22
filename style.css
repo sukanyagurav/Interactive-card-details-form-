@@ -123,6 +123,11 @@ h1{
 .card-details.successfull{
     display: none;
 }
+.card-details.successfull h2{
+    letter-spacing: 3.5px;
+    font-size: 1.4rem;
+    text-transform: uppercase;
+}
 .card-details.successfull.show{
     display: flex;
     flex-direction: column;
