@@ -1,0 +1,119 @@
+const btn=document.querySelector('.btn')
+const inputs=document.querySelectorAll('input')
+const cardNo=document.querySelector('#cardNumber')
+const cname=document.querySelector('#cardHolderName');
+const expirayMonth=document.querySelector('.expiraryMonth');
+const expirayYear=document.querySelector('.expiraryYear');
+const errorMsg=document.querySelector('.errorMsg');
+const currentMonth=new Date().getMonth()+1
+function error(input,msg){
+   if(!input.parentElement.classList.contains('show')){
+        input.parentElement.classList.add('show')
+        input.parentElement.querySelector('.errorMsg').innerHTML=msg
+   }
+}
+function updateCard(lbl,val){
+    lbl.innerHTML=val
+}
+function checkName(target){
+    const nameRegex=/^[A-Z ]+$/i
+    let [input,value]= [...target]
+    if(!nameRegex.test(value.trim()) ){
+        error(input,'Cardholder name invalid')
+    }
+    else{
+        input.parentElement.classList.remove('show')
+        const fname=document.querySelector('.lblName')
+        updateCard(fname,value.trim())
+    }
+}
+function checkNumber(target){
+    const numberRegex=/^[0-9 ]+$/
+    let [input,value]= [...target]
+    if(!numberRegex.test(value) ){
+        error(input,'Cardholder Number invalid')
+    }
+    else{
+        input.parentElement.classList.remove('show')
+        const fname=document.querySelector('.cardholderNumber')
+        const parts = [];
+        value=value.toString()
+        for (let i = 0; i < value.length; i += 4) {
+           parts.push(value.substr(i, 4));
+       }
+       value= parts.length > 1 ? parts.join(" ") : value;
+        updateCard(fname,value)
+    }
+}
+function waitForSometime(fn,delay=500){
+    let timer;
+    return (...args)=>{
+        clearTimeout(timer)
+        timer=setTimeout(() => {
+            fn(args)
+        }, delay);
+    }
+}
+cname.addEventListener('keyup',function(e){
+    wait(e.target,e.target.value,e.target.id)
+})
+cardNo.addEventListener('keyup',function(e){
+    const v = e.target.value
+    .replace(/\s+/g, "")
+    .replace(/[^0-9]/gi, "")
+    .substr(0, 16);
+    wait(e.target,v,e.target.id)
+})
+let isMonthError=false
+expirayMonth.addEventListener('keyup',function(e){
+    const regex=/^[0-9 ]+$/
+    if(!regex.test(e.target.value)){
+        if((+e.target.value > 13)){
+            e.target.value=12
+        }
+
+    }
+    else{
+        e.target.style.borderColor='hsl(0, 100%, 66%)';
+        e.target.classList.add('show') 
+        e.target.parentElement.querySelector('.errorMsg').innerText='Incorrect month'
+    
+    }
+    
+})
+
+expirayYear.addEventListener('keyup',function(e){
+    const currentYear=new Date().getFullYear().toString().substring(2)
+    let value=/^[0-9 ]+$/.test(e.target.value)
+    const regex=/^[0-9 ]+$/
+    if(regex.test(e.target.value)){
+        if((+e.target.value < 0) || (+e.target.value <= +currentYear) && isMonthError){
+            e.target.style.borderColor='hsl(0, 100%, 66%)';
+            e.target.classList.add('show')
+            e.target.parentElement.querySelector('.errorMsg').innerText='Should not be a Expired year'
+        }
+
+        else{
+            e.target.style.borderColor='hsl(270, 3%, 87%)';
+            e.target.classList.remove('show')
+            
+        }
+    }
+    else{
+        e.target.style.borderColor='hsl(0, 100%, 66%)';
+        e.target.classList.add('show') 
+        e.target.parentElement.querySelector('.errorMsg').innerText='Incorrect Year'
+    }
+
+})
+
+
+const wait=waitForSometime((args)=> {
+    if(args[2]  == 'cardHolderName'){
+      return checkName(args)
+    }
+    else if(args[2] == 'cardNumber'){
+      return checkNumber(args)
+    }
+  
+})

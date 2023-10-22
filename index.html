@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="stylesheet" href="style.css">
+  <title>Frontend Mentor | Interactive card details form</title>
+
+ 
+</head>
+<body>
+  <section class="card-Image">
+   <div class="card">
+    <div class="frontCard">
+      <div class="frontCard-circle">
+        <div class="frontCard-circle-filled"></div>
+        <div class="frontCard-circle-empty"></div>
+      </div>
+      <h1 class="cardholderNumber">0000 0000 0000 0000</h1>
+      <div class="user-details">
+        <span class="lblName">Jane Aspanpleseed</span>
+        <span class="expirayDate"><span class="lblMonth">00</span>/<span class="lblYear">00</span></span>
+      </div>
+    </div>
+    <div class="backcard">
+      <span class="lblCvc">000</span>
+    </div>
+  </div>
+  </section>
+  <main>
+    <div class="card-details">
+    <div class="card-input">
+      <label for="cardHolderName"> Cardholder Name</label>
+      <input type="text" maxlength="25" id="cardHolderName" placeholder="e.g. Jane Appleseed" required >
+      <span class="errorMsg"></span>
+    </div>
+    <div class="card-input">
+      <label for="cardNumber">Card Number</label>
+      <input type="tel" min="0" maxlength="19" required id="cardNumber" placeholder="e.g. 1234 5678 9123 0000">
+      <span class="errorMsg"></span>
+    </div>
+    <div class="card-date">
+      
+      <div class="card-expirary">
+        <label for="expirary">
+          Exp. Date (MM/YY)
+        </label>
+        <div class="card-input date" id="date">
+          <input  type="tel" min="1" maxlength="2" required class="expiraryMonth" placeholder="MM" id="expiraryMonth" class="day">
+          <input type="tel" min='10' placeholder="YY" required class="expiraryYear" maxlength="2" id="expiraryYear">
+          <span class="errorMsg" ></span>
+        </div>
+        
+      </div>
+      <div class="card-input card-cvc">
+        <label for="cvc">
+          cvc
+        </label>
+        <input type="tel" min="100"  maxlength="3" required placeholder="e.g. 123" id="cvc">
+        <span class="errorMsg" ></span>
+      </div>
+     
+    </div>
+    <button class="btn" id="verify">Confirm</button>
+  </div>
+  <section class="card-details successfull">
+    <img src="images/icon-complete.svg" alt="successfull submission">
+    <h1>Thank you!</h1>
+    <p>We've added your card details
+      Continue</p>
+      <button class="btn" id="continue">Continue</button>
+  </section>
+  <footer class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+    Coded by <a href="#">SG</a>.
+  </footer>
+  </main>
+  
+  
+ 
+ 
+  <script src="script.js"></script>
+</body>
+</html>
